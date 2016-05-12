@@ -2,7 +2,7 @@
   /*position: absolute;*/
   width: 100%;
   height: 100%;
-  background: url(/img/bg.jpg) no-repeat top left;
+  background: url(../img/bg.jpg) no-repeat top left;
   background-size: 100% 100%;
 }
 .page{
@@ -70,7 +70,7 @@
   margin-left:-58px;
   margin-top:-58px;
   position: absolute;
-  background: url(/img/icon_logo_c.png) no-repeat
+  background: url(../img/icon_logo_c.png) no-repeat
 }
 .txt-green{
   color:#24ffed;

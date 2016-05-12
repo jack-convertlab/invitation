@@ -1,7 +1,9 @@
 <html>
   <head>
+    <!-- build:css-app -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/custom.css">
+    <!-- endbuild -->
   </head>
   <body>
     <div id="wrapper">
@@ -9,11 +11,22 @@
         <div class="text-block" id="question"><span>数字营销的未来是什么</div>
         <div class="text-block" id="whenwhere">2016.6.28 北京</div>
         <div class="text-block" id="answer">答案揭晓</div>
-        
+        <div class="circle" id="outer-circle">
+          <div class="circle" id="inner-circle">
+            <div id="logo" />
+          </div>
+        </div>
       </div>
+      <div id="subject">
+        <span class="txt-green">DM-HUB</span><span>数字营销枢纽</span><br />
+        <p>产品发布会</p>
+      </div>
+      <div id="btn" class="text-block"><button>马上报名</button></div>
     </div>
-    <script src="js/TweenMax.min.js"></script>
-    <!--<script src="js/ScrollToPlugin.min.js"></script>-->
+    <!-- build:js-app  -->
+    <script src="js/TweenLite.min.js"></script>
+    <script src="js/CSSPlugin.min.js"></script>
     <script src="js/main.js"></script>
+    <!-- endbuild -->
   </body>
 </html>

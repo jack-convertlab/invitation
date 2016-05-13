@@ -18,7 +18,7 @@ gulp.task('js',function () {
   return gulp.src([
     'public/js/TweenLite.min.js',
     'public/js/CSSPlugin.min.js',
-    'bublic/js/main.js'])
+    'public/js/main.js'])
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest(destPath+'/js'));

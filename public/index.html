@@ -1,5 +1,8 @@
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邀请函</title>
     <!-- build:css-app -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -7,21 +10,31 @@
   </head>
   <body>
     <div id="wrapper">
-      <div class="page">
+      
+      <div class="page" id="first-page">
+        <canvas></canvas>
+        <div class="circle" id="first-outer">
+          <div class="circle" id='first-inner'>
+            
+          </div>
+        </div>
         <div class="text-block" id="question"><span>数字营销的未来是什么</div>
         <div class="text-block" id="whenwhere">2016.6.28 北京</div>
         <div class="text-block" id="answer">答案揭晓</div>
+        
+      </div>
+      <div class="page">
         <div class="circle" id="outer-circle">
           <div class="circle" id="inner-circle">
-            <div id="logo" />
+            <div id="logo" ></div>
           </div>
         </div>
+        <div id="subject">
+          <span class="txt-green">DM-HUB</span><span>数字营销枢纽</span><br />
+          <p>产品发布会</p>
+        </div>
+        <div id="btn" class="text-block"><button>马上报名</button></div>
       </div>
-      <div id="subject">
-        <span class="txt-green">DM-HUB</span><span>数字营销枢纽</span><br />
-        <p>产品发布会</p>
-      </div>
-      <div id="btn" class="text-block"><button>马上报名</button></div>
     </div>
     <!-- build:js-app  -->
     <script src="js/TweenLite.min.js"></script>

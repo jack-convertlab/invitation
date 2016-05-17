@@ -21,15 +21,15 @@ body{
   
 }
 #first-outer{
-  opacity: 1;
+  opacity: 0;
   border:1.5px #656467 dotted;
   top:50%;
   left:50%;
 }
 #first-inner{
-  opacity: 1;
+  opacity: 0;
   border:2.5px #9e979e dotted;
-  top:35%;
+  top:50%;
   left:50%;
 }
 .text-block{
@@ -46,11 +46,6 @@ body{
   margin-left:-40%;
   top:60%;
   border: 1px solid transparent;
-  
-  /*transform:translate(0,60%);
-  opacity: 1;*/
-  /*-webkit-filter:blur(5px);*/
-  /*filter: blur(5px);*/
 }
 #whenwhere{
   opacity: 0;

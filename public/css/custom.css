@@ -4,8 +4,8 @@ body{
 #wrapper{
   /*position: absolute;*/
   width: 100%;
-  height: 100%;
-  background: url(../img/bg.jpg) no-repeat top left;
+  height: 100vh;
+  background: url(http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/bg.jpg) no-repeat top left;
   background-size: 100% 100%;
 }
 .page{
@@ -13,7 +13,7 @@ body{
   height: 100%;
   position: absolute;
   overflow: hidden;
-  
+  z-index: 10;
 }
 #words-canvas{
   position: absolute;
@@ -49,7 +49,7 @@ body{
 }
 #whenwhere{
   opacity: 0;
-  color:#24ffed;
+  color:#24d3ff;
   font-size:1.5em;
   width:60%;
   margin-left:-30%;
@@ -57,7 +57,7 @@ body{
 }
 #answer{
   opacity: 0;
-  color:#24ffed;
+  color:#24d3ff;
   top:80%;
   font-size: 1.5em;
   width:40%;
@@ -73,13 +73,13 @@ body{
   border:2.5px #515153 dotted;
   top:20%;
 }
-#inner-circle{
+#inner-circle{  
   border:2.5px #a3a1a9 dotted;
-  top:50%;
+  top:20%;
   left:50%;
 }
 #logo{
-  width: 40%;
+  width: 38%;
   height: 44%;
   /*width: 807px;
   height: 48%;*/
@@ -90,11 +90,11 @@ body{
   /*margin-left: -175%;
   margin-top: -24%;*/
   position: absolute;
-  background: url(../img/icon_logo.png) no-repeat;
+  background: url(http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/logo.png) no-repeat;
   background-size:cover;
 }
 .txt-green{
-  color:#24ffed;
+  color:#24d3ff;
 }
 #subject{
   opacity: 0;
@@ -126,4 +126,16 @@ body{
   height: 2.2em;
   color:#fff;
   font-size: 1.5em;
+}
+#outter{
+  position: relative;
+  z-index:1999;
+  width: 100%;
+  height: 100px;
+}
+#outter button{
+  width: 50px;
+  height: 40px;
+  margin: 10px;
+  float: right;
 }

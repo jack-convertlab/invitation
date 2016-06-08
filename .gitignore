@@ -26,7 +26,8 @@ build
 
 # Dependency directory
 node_modules
-
+public/bower_components
+spec
 # Optional npm cache directory
 .npm
 

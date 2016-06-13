@@ -55,8 +55,8 @@ function animate(){
     // marginLeft:innerMLTo,
     // marginTop:innerMLTo,
     onComplete:function(e) {
-      TweenLite.to('#first-outer',1,{delay:2,opacity:0});
-      TweenLite.to('#first-inner',1,{delay:2,opacity:0});
+      TweenLite.to('#first-outer',1,{delay:1,opacity:0});
+      TweenLite.to('#first-inner',1,{delay:1,opacity:0});
     }
   });
   
@@ -300,7 +300,7 @@ function init() {
     {txt:'微博',size:0.5,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*4.6},
     {txt:'AI',size:0.2,baseLine:'top',align:'right',x:canvasWidth/2-base*0.25,y:top+base*5.15},
     {txt:'埋点',size:0.25,baseLine:'top',align:'left',x:canvasWidth/2-base*0.2,y:top+base*5.1},
-    {txt:'转化率',size:0.8,baseLine:'top',align:'center',x:canvasWidth/2,y:top},
+    {txt:'转化率',size:0.75,baseLine:'top',align:'center',x:canvasWidth/2,y:top},
     {txt:'网红',size:0.56,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*5.7},
     {txt:'SMS',size:0.57,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*6.2},
     {txt:'TRACKING',size:0.3,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*6.8},
@@ -314,7 +314,7 @@ function init() {
   function initWords(base,len){
     for(var i=base;i<len;i++){
       var word=words[i];
-      word.startSize= 2.5; //word.size+Math.random();
+      word.startSize= 3; //word.size+Math.random();
       var x,y;
       var line=Math.floor((i-base)/2);
       var m=i%2;
@@ -361,7 +361,7 @@ function init() {
   // canvas.getContext('2d').drawImage(bufCanvas,0,0,canvasWidth,canvasHeight,0,0,width,realHeight);
   
   animate();
-  var duration=3500,draw=true,fps=15,fpsInterval=1000/fps,elap,then=Date.now();
+  var duration=1500,draw=true,fps=15,fpsInterval=1000/fps,elap,then=Date.now();
   
   function loop(){
     var now = Date.now();

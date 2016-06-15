@@ -1,13 +1,17 @@
 var width,height;
 var canvas,bufCanvas
 var playSound=true;
+var audio=null;
+var playing=false;
+var outter=null;
+
 function animate(){
   var outerWidth=width*1.2;
   var outerTo=outerWidth+'px';
   var outerMLTo=-outerWidth/2+'px';
   var outerFrom=outerWidth*2+'px';
   var outerMLFrom=-outerWidth+'px';
-  TweenLite.fromTo('#first-outer', 4,
+  TweenLite.fromTo('#first-outer', 3,
   {
     opacity:1,
     transform:'scale(2)',
@@ -21,7 +25,7 @@ function animate(){
     // marginTop:outerMLFrom
   },
   {
-    delay:5,
+    delay:2.5,
     transform:'scale(1)',
     // width:outerTo,
     // height:outerTo,
@@ -34,7 +38,7 @@ function animate(){
   var innerMLTo=-innerWidth/2+'px';
   var innerFrom=innerWidth*2+'px';
   var innerMLFrom=-innerWidth*2/2+'px';
-  TweenLite.fromTo('#first-inner', 4,
+  TweenLite.fromTo('#first-inner', 3,
   {
     opacity:1,
     transform:'scale(2)',
@@ -48,7 +52,7 @@ function animate(){
     // marginTop:innerMLFrom
   },
   {
-    delay:5,
+    delay:2.5,
     transform:'scale(1)',
     // width:innerTo,
     // height:innerTo,
@@ -61,10 +65,10 @@ function animate(){
   });
   
   TweenLite.to(canvas,1,{
-    delay:12,
+    delay:7,
     y:'-20%',
     onComplete:function(){
-      TweenLite.fromTo('#question', 1.5,
+      TweenLite.fromTo('#question', 1,
       {
         opacity:1,
         transform:'scale(2)',
@@ -79,7 +83,7 @@ function animate(){
           // var q=document.getElementById('question');
           // q.style.borderColor='#fff';
           // q.style.backgroundColor='rgba(5,3,4,0.35)';
-          setTimeout(function(){whenWhere();},1500);
+          setTimeout(function(){whenWhere();},1000);
         }
       });
     }
@@ -90,7 +94,7 @@ function animate(){
 }
 
 function whenWhere(){
-  TweenLite.fromTo('#whenwhere', 1.5,
+  TweenLite.fromTo('#whenwhere', 1,
   {
     opacity:0.5,transform:'scale(2)',
     //fontSize:'6em',width:'80%',marginLeft:'-40%',
@@ -111,7 +115,7 @@ function whenWhere(){
   );
 }
 function answer(){
-  TweenLite.fromTo('#answer', 1.5,
+  TweenLite.fromTo('#answer', 1,
   {
     opacity:0.5,transform:'scale(2)',
     //webkitFilter:'blur(10px)'
@@ -212,7 +216,7 @@ function subject() {
   TweenLite.fromTo('#subject', 1,
   {
     opacity:1,transform:'scale(2)',
-    webkitFilter:'blur(20px)'
+    webkitFilter:'blur(10px)'
   },
   {
     transform:'scale(1)',
@@ -221,7 +225,7 @@ function subject() {
       setTimeout(function(){
         var btn=document.getElementById('btn');
         btn.style.opacity=1;  
-      },1000);
+      },500);
       
     }}
   );
@@ -235,18 +239,33 @@ function ready(fn) {
   }
   
 }
+function getUrlParam(name,location) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = location.search.substr(1).match(reg);  //匹配目标参数
+  if (r) return decodeURI(r[2]); return null; //返回参数值
+}
+
 function init() {
   var btn=document.getElementById('btn');
   btn=btn.getElementsByTagName('button')[0];
   btn.addEventListener('click',function(){
-    window.location.href="http://host.convertlab.com/page/1238467299/e62b6509f30c4892ae0640cc59806884";
+    //debugger;
+    var url="http://host.convertlab.com/page/1238467299/e62b6509f30c4892ae0640cc59806884";
+    if(parent.frames.length){
+      var sr=getUrlParam('cl_sr',parent.window.location);
+      var ctnm=getUrlParam('cl_ctnm',parent.window.location);
+      if(sr){
+        if(ctnm==='一对一邀请函'){
+          url='http://host.convertlab.com/page/1238467299/066b450b5c66474da9fe1d5c98b05301'+'&cl_sr='+sr;
+        }else{
+          url=url+'&cl_sr='+sr;  
+        }       
+      }
+    }
+    window.location.href=url;
   });
-  // var soundBtn=document.getElementById('outter');
-  // soundBtn=soundBtn.getElementsByTagName('button')[0];
-  // soundBtn.addEventListener('click',function(){
-  //   document.getElementById('sound').muted=playSound;
-  //   playSound=!playSound;
-  // });
+  
+  
   //var plr=document.querySelector('.plyr');
   // plr.addEventListener('ready', function(event) {
   //   console.log("r")
@@ -285,7 +304,7 @@ function init() {
     {txt:'分众',size:0.56,baseLine:'top',align:'right',x:canvasWidth/2-base*1.48,y:top+base*1.25},
     {txt:'用户标签',size:0.22,baseLine:'top',align:'left',x:canvasWidth/2-base*2.6,y:top+base*1.8},
     {txt:'网站',size:0.25,baseLine:'top',align:'left',x:canvasWidth/2-base*1.25,y:top+base*0.9},
-    {txt:'iBeacon',size:0.22,baseLine:'top',align:'left',x:canvasWidth/2+base*0.7,y:top+base*0.95},
+    {txt:'iBeacon',size:0.25,baseLine:'top',align:'left',x:canvasWidth/2+base*1.1,y:top+base*0.95},
     {txt:'SEO',size:0.6,baseLine:'top',align:'left',x:canvasWidth/2+base,y:top+base*1.1},
     {txt:'RTB',size:0.65,baseLine:'top',align:'left',x:canvasWidth/2+base*1.15,y:top+base*1.55},
     {txt:'SEM',size:0.6,baseLine:'top',align:'left',x:canvasWidth/2+base*1.15,y:top+base*2.1},
@@ -300,7 +319,7 @@ function init() {
     {txt:'微博',size:0.5,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*4.6},
     {txt:'AI',size:0.2,baseLine:'top',align:'right',x:canvasWidth/2-base*0.25,y:top+base*5.15},
     {txt:'埋点',size:0.25,baseLine:'top',align:'left',x:canvasWidth/2-base*0.2,y:top+base*5.1},
-    {txt:'转化率',size:0.75,baseLine:'top',align:'center',x:canvasWidth/2,y:top},
+    {txt:'转化率',size:0.7,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*0.15},
     {txt:'网红',size:0.56,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*5.7},
     {txt:'SMS',size:0.57,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*6.2},
     {txt:'TRACKING',size:0.3,baseLine:'top',align:'center',x:canvasWidth/2,y:top+base*6.8},
@@ -314,7 +333,7 @@ function init() {
   function initWords(base,len){
     for(var i=base;i<len;i++){
       var word=words[i];
-      word.startSize= 3; //word.size+Math.random();
+      word.startSize= 2.5; //word.size+Math.random();
       var x,y;
       var line=Math.floor((i-base)/2);
       var m=i%2;
@@ -333,22 +352,22 @@ function init() {
   initWords(0,4);
   setTimeout(function(){
     initWords(4,8);
-  },1000);
+  },600);
   setTimeout(function(){
     initWords(8,12);
-  },2000);
+  },1200);
   setTimeout(function(){
     initWords(12,16);
-  },3000);
+  },1800);
   setTimeout(function(){
     initWords(16,20);
-  },4000);
+  },2400);
   setTimeout(function(){
     initWords(20,24);
-  },5000);
+  },3000);
   setTimeout(function(){
     initWords(24,29);
-  },6000);
+  },3600);
   
   // ctx.fillStyle='rgba(255, 255, 255,1)';
   // words.forEach(function(word){
@@ -361,7 +380,7 @@ function init() {
   // canvas.getContext('2d').drawImage(bufCanvas,0,0,canvasWidth,canvasHeight,0,0,width,realHeight);
   
   animate();
-  var duration=1500,draw=true,fps=15,fpsInterval=1000/fps,elap,then=Date.now();
+  var duration=1200,draw=true,fps=20,fpsInterval=1000/fps,elap,then=Date.now();
   
   function loop(){
     var now = Date.now();
@@ -411,14 +430,67 @@ function init() {
   }
   loop();
 }
-ready(init);
+ready(loading);
 
-function Font(txt,size){
-  this.txt=txt;
-  this.size=size;
+function loading() {
+  var soundLoaded=true;
+  var imgLoaded=false;
+  outter=document.getElementById('outter');
+  audio=document.getElementById('sound');
+  //audio.src='http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/sound.mp3';
+  // audio.addEventListener('canplaythrough',function() {
+  //   soundLoaded=true;
+  //   start();
+  // });
+  var loaded=0;
+  var images=[
+    'http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/bg.jpg',
+    'http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/logo.png',
+    'http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/icon_sound.png',
+    'http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/icon_nosound.png'
+  ];
+  function onImgLoad(cb){
+    loaded++;
+    if(loaded===images.length){
+      imgLoaded=true;
+      start();
+    }
+  }
+  function start(){
+    if(soundLoaded && imgLoaded){
+      outter.addEventListener('touchstart',play,true);
+      //outter.addEventListener('click',play,true);
+      document.getElementsByClassName('clear-loading')[0].style.display='none';
+      document.getElementById('start').style.display='block';
+      document.getElementById('click').style.display='block';
+    }
+  }
+  function play() {
+    if(!playing){
+      document.getElementById('start').style.display='none';
+      document.getElementById('click').style.display='none';
+      var soundBtn=document.getElementById('sound-btn');
+      soundBtn.addEventListener('touchstart',function(){
+        audio.muted=playSound;
+        playSound=!playSound;
+        soundBtn.src=playSound?'http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/icon_sound.png':"http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/icon_nosound.png"
+      });
+      soundBtn.style.display='block';
+      outter.style.height='100px';
+      playing=true;
+      setTimeout(init,400);
+      audio.volume=0.4;
+      audio.play();
+    }
+  }
+  var img=[];
+  for(var i=0;i<images.length;i++){
+    img[i]=new Image();
+    img[i].onload=onImgLoad;
+    img[i].src=images[i];
+  }
+  
 }
-
-
 
 window.requestAnimFrame = (function(callback) {
   return window.requestAnimationFrame || window.webkitRequestAnimationFrame

@@ -10,7 +10,6 @@
   </head>
   <body>
     <div id="wrapper">
-      
       <div class="page" id="first-page">
         <canvas id="words-canvas"></canvas>
         <div class="circle" id="first-outer">
@@ -40,10 +39,16 @@
           <source src="/termin.mp3" type="audio/mp3">
         </audio>
       </div>-->
-      <!--<div id="outter">-->
-        <!--<button>Sound</button>-->
-      <!--</div>-->
-      <!--<audio id="sound" src="http://192.168.10.67:801/img/sound.mp3" autoplay="autoplay" loop="loop"></audio>-->
+      <div id="outter" class="page">
+        <img id="sound-btn" src='http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/icon_sound.png' />
+        <div class="clear-loading loading-effect-1">
+			    <span></span>
+			    <span></span>
+		    </div>
+        <div id="start">开启</div>
+        <div id="click"></div>
+      </div>
+      <audio id="sound" src="http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/sound.mp3" loop="loop"></audio>
     </div>
     <!-- build:js-app  -->
     <script src="js/TweenLite.min.js"></script>

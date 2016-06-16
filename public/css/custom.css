@@ -135,10 +135,10 @@ body{
 }
 #sound-btn{
   display: none;
-  width:50px;
-  height: 50px;
+  width:40px;
+  height:40px;
   float: right;
-  margin: 0;
+  margin: 10;
   /*background: url('http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/icon_sound.png');
   background-size:50px 50px;*/
 }

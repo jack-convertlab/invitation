@@ -475,15 +475,21 @@ function loading() {
   outter=document.getElementById('outter');
   audio=document.getElementById('sound');
   function audioListener(){
+    audio.removeEventListener('canplaythrough',audioListener);
+    audio.removeEventListener('progress',audioListener);
     soundLoaded=true;
     start();
   }
   audio.addEventListener('canplaythrough',audioListener);
-  audio.addEventListener('load',function(){
-    setTimeout(audioListener,10000);
+  if(audio.readyState>3){
+    audioListener();
+  }
+  //audio.addEventListener('progress',audioListener);
+  wx.ready(function(){
+    audio.play();
   });
-  audio.src='http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/sound.mp3';
-  audio.load();
+  //audio.src='http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/sound.mp3';
+  //audio.load();
   var loaded=0;
   var images=[
     'http://fabuhui.oss-cn-shanghai.aliyuncs.com/img/bg.jpg',
@@ -503,8 +509,10 @@ function loading() {
       outter.addEventListener('touchstart',play,true);
       outter.addEventListener('click',play,true);
       document.getElementsByClassName('clear-loading')[0].style.display='none';
-      document.getElementById('start').style.display='block';
-      document.getElementById('click').style.display='block';
+      if(!playing){
+        document.getElementById('start').style.display='block';
+        document.getElementById('click').style.display='block';
+      }
     }
   }
   function play() {
@@ -513,7 +521,6 @@ function loading() {
       document.getElementById('click').style.display='none';
       var soundBtn=document.getElementById('sound-btn');
       soundBtn.addEventListener('touchstart',function(){
-        //audio.muted=playSound;
         playSound=!playSound;
         if(playSound){
           audio.play();
@@ -529,15 +536,19 @@ function loading() {
       //audio.volume=0.4;
       audio.play();
       setInterval(function(){
-        if(sndCount++<15){
-          audio.play();
+        if(sndCount++<30 && playSound){
+          //alert('p');
+          // audio.pause();
+          // setTimeout(function() {
+          //   audio.play();
+          // }, 10);
           //console.log(sndCount);
         }
         //audio.pause();
         // setTimeout(function() {
         //   audio.play();
         // }, 0);
-      },1000);
+      },500);
     }
   }
   var img=[];
